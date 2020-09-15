@@ -1,0 +1,12 @@
+
+.todo-card {
+    padding: 30px;
+    max-width: 400px;
+    min-width: 400px;
+    min-height: 200px;
+    display: inline-block;
+}
+
+.todo-card .todo-done {
+    text-decoration: line-through;
+}

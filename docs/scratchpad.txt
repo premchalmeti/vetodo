@@ -1,0 +1,62 @@
+
+Angular 9
+DRF
+
+Must: Documented, Unit Tests
+
+Deadline: 6th September
+
+* Todo App:
+
+1. Create/Edit/Delete Todo tasks
+2. Mark Task complete
+3. Schedule/reschedule Tasks
+4. Reminder notification for Tasks
+
+
+* Frontend:
+
+On delete confirmation
+ErrorHandling
+NGRx Store
+Session expiry handling?
+Task Reminder Research
+Show Logged-in user info
+Add Task Created, Task Updated, Failed Messages
+
+Cancel Schedule
+Reschedule Task
+
+
+Done:
+
+Edit task
+Handle edit/create todo dialog close
+Login
+Logout
+Create Task
+Delete Task
+Mark Task Done
+Todo Service
+Todo Component
+Angular Material Design
+AuthGuard: Unauthenticated Route Prevention
+AuthService: Authentication
+ServiceUrl: API URLs
+CSRF Configuration: HttpClientXsrfModule
+
+
+* Backend:
+
+- DRF
+    - serializers
+    - viewsets
+    - router
+- Task reminder: rq-scheduler vs django channels vs sse
+
+
+* Done:
+
+Class-based views
+Todo Model
+Todo Django App

@@ -1,0 +1,43 @@
+<div class="todo-dialog">
+    <h1 mat-dialog-title>Add Reminder</h1>
+    <div mat-dialog-content>
+      <div>
+        <mat-form-field>
+            <input matInput [ngxMatDatetimePicker]="picker" 
+                            placeholder="Choose a date" 
+                            [formControl]="dateControl"
+                            [min]="minDate" [max]="maxDate" 
+                            [disabled]="disabled">
+            <mat-datepicker-toggle matSuffix [for]="picker">
+            </mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker 
+              [showSpinners]="showSpinners" 
+              [showSeconds]="showSeconds"
+              [stepHour]="stepHour" [stepMinute]="stepMinute" 
+              [stepSecond]="stepSecond"
+              [touchUi]="touchUi"
+              [color]="color">
+            </ngx-mat-datetime-picker>
+          </mat-form-field>
+      </div>
+    </div>
+    <div mat-dialog-actions>
+      <button
+        mat-stroked-button
+        color="accent"
+        (click)="cancel()"
+        class="float-right"
+      >
+        Cancel
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        [mat-dialog-close]="dateControl.value"
+        class="float-right"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+  

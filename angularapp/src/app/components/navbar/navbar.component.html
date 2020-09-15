@@ -1,0 +1,42 @@
+<mat-toolbar color="primary">
+  <span class="ml-5">{{ title }}</span>
+  <span class="spacer"></span>
+  <button
+    mat-icon-button
+    class="mr-5"
+    (click)="fetchReminders()"
+    [matMenuTriggerFor]="trigger"
+  >
+    <mat-icon [matBadge]="todoReminders.length" matBadgeColor="warn"
+      >notifications</mat-icon
+    >
+  </button>
+  <mat-menu #trigger="matMenu" class="reminders-menu">
+    <mat-list *ngFor="let todoReminder of todoReminders; last as isLast">
+      <mat-list-item>
+        <h6 matLine>{{ todoReminder.todo.title }}</h6>
+        <p matLine>
+          <span [title]="todoReminder.todo.description">
+            {{ todoReminder.todo.description }}
+          </span>
+        </p>
+        <button
+          mat-icon-button
+          color="warn"
+          icon="close"
+          (click)="deleteReminder(todoReminder)"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-divider *ngIf="!isLast"></mat-divider>
+    </mat-list>
+    <mat-list *ngIf="todoReminders.length === 0">
+      <mat-list-item class="text-muted">All caught up!</mat-list-item>
+    </mat-list>
+  </mat-menu>
+  <button mat-flat-button class="mr-3" (click)="logout()">
+    Logout
+    <mat-icon class="mx-1">logout</mat-icon>
+  </button>
+</mat-toolbar>

@@ -1,0 +1,56 @@
+<div
+  class="d-flex flex-column justify-content-center align-items-center h-100 container"
+>
+  <span class="display-3 text-primary mb-5">{{ title }}</span>
+  <div>
+    <mat-card class="login-card">
+      <mat-card-header>
+        <mat-card-title class="py-2"
+          >Log-In to start your session</mat-card-title
+        >
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          <mat-form-field>
+            <mat-label>Enter your email</mat-label>
+            <input
+              matInput
+              [(ngModel)]="username"
+              id="email"
+              type="email"
+              name="email"
+            />
+            <mat-icon matSuffix class="mx-2">email</mat-icon>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Enter your password</mat-label>
+            <input
+              matInput
+              [(ngModel)]="password"
+              id="password"
+              [type]="hide?'password':'text'"
+              name="password"
+            />
+            <button mat-icon-button matSuffix (click)="hide = !hide" class="mx-2">
+              <mat-icon style="font-size:25px;">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+          <p class="text-danger">{{ err_msg }}</p>
+        </div>
+      </mat-card-content>
+      <mat-card-actions class="text-right">
+        <button
+          mat-raised-button
+          color="primary"
+          class="mr-3"
+          (click)="login()"
+        >
+          Log In
+          <mat-icon>login</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

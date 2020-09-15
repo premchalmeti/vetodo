@@ -1,0 +1,31 @@
+<mat-card class="todo-card m-3">
+  <mat-card-header>
+    <mat-card-title [class.todo-done]="todo.done" [title]="todo.title">
+      {{ todo.title }}
+    </mat-card-title>
+    
+  </mat-card-header>
+  <mat-divider [inset]="true" class="py-2"></mat-divider>
+  <mat-card-content>
+    <p class="text-truncate" [title]='todo.description'>{{ todo.description }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <mat-checkbox class="example-margin ml-3" [(ngModel)]="todo.done" (ngModelChange)='setDoneStatus()'>
+      Done
+    </mat-checkbox>
+
+    <button mat-icon-button color='primary' class="float-right" (click)="openEditTodoDialog()">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button color='warn' (click)="delete()" class="float-right">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-icon-button color='primary' (click)="openTodoReminderDialog()" class="float-right">
+      <mat-icon>add_alert</mat-icon>
+    </button>
+    <button *ngIf='todo.reminder_datetime' mat-icon-button color='primary' class="float-right">
+      <mat-icon>schedule</mat-icon>
+    </button>
+  </mat-card-actions>
+  
+</mat-card>
