@@ -1,4 +1,7 @@
-<div class="mx-5">
+
+<app-navbar *ngIf='authService.authenticated' class="fixed-top"></app-navbar>
+
+<div class="dashboard-view">
   <div class="row">
     <div *ngFor="let todo of todos">
       <app-todo [todo]="todo" (remove)='removeTodo(todo)'></app-todo>

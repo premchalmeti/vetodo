@@ -4,6 +4,8 @@ import django_rq
 from django.db import models
 from model_utils import DateTimeMixin
 
+
+from vetodoprj.consumer import ReminderConsumer
 from vetodoprj.utils.dateutils import parse_reminder_datetime
 
 
@@ -56,8 +58,15 @@ class Todo(models.Model, DateTimeMixin):
         todo_obj = cls.objects.filter(id=todo_id).first()
 
         print(f'{dt.datetime.now()}: {todo_obj.title}')
+        
+        todo_obj = TodoReminder().add(todo_obj)
 
-        return TodoReminder().add(todo_obj)
+        # push reminder notification
+        reminder_data = todo_obj.to_dict()
+        print(reminder_data)
+        ReminderConsumer.emit(reminder_data)
+
+        return todo_obj
 
     def schedule_reminder(self, reminder_utc_datetime_str):
         # Todo: enqueue `Todo.create_reminder_notification()` function
@@ -84,3 +93,7 @@ class TodoReminder(models.Model, DateTimeMixin):
         self.todo = todo_obj
         self.save()
         return self
+
+    def to_dict(self):
+        from vetodo_app.serializers import TodoReminderSerializer
+        return TodoReminderSerializer(self).data

@@ -2,7 +2,7 @@
 
 # third-party imports
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
 
@@ -129,3 +129,13 @@ class TodoReminderViewSet(ModelViewSet):
         todo_obj.save()
 
         return JsonResponse({'ok': True})
+
+
+def index(request):
+    return render(request, 'vetodo_app/index.html')
+
+
+def room(request, room_name):
+    return render(request, 'vetodo_app/room.html', {
+        'room_name': room_name
+    })

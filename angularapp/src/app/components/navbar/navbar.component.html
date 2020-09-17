@@ -7,16 +7,16 @@
     (click)="fetchReminders()"
     [matMenuTriggerFor]="trigger"
   >
-    <mat-icon [matBadge]="todoReminders.length" matBadgeColor="warn"
-      >notifications</mat-icon
-    >
+    <mat-icon [matBadge]="todoReminders.length" matBadgeColor="warn">
+      notifications
+    </mat-icon>
   </button>
   <mat-menu #trigger="matMenu" class="reminders-menu">
     <mat-list *ngFor="let todoReminder of todoReminders; last as isLast">
       <mat-list-item>
-        <h6 matLine>{{ todoReminder.todo.title }}</h6>
+        <h6 matLine [title]="todoReminder.todo.title">{{ todoReminder.todo.title }}</h6>
         <p matLine>
-          <span [title]="todoReminder.todo.description">
+          <span [title]="todoReminder.todo.description" class="text-truncate">
             {{ todoReminder.todo.description }}
           </span>
         </p>
@@ -32,7 +32,7 @@
       <mat-divider *ngIf="!isLast"></mat-divider>
     </mat-list>
     <mat-list *ngIf="todoReminders.length === 0">
-      <mat-list-item class="text-muted">All caught up!</mat-list-item>
+      <mat-list-item class="text-muted">Tasks with upcoming reminders appear here!</mat-list-item>
     </mat-list>
   </mat-menu>
   <button mat-flat-button class="mr-3" (click)="logout()">

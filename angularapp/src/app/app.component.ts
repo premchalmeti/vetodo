@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 
-import { AuthService } from './services/auth.service';
+import { WebsocketService } from './services/websocket.service';
 
 
 @Component({
@@ -10,9 +10,9 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'Vetodo'
-  constructor(public authService: AuthService) {}
-
-  ngOnInit() {
+  constructor(private webSocketService: WebsocketService) {
+    this.webSocketService.connect();
   }
+
+  ngOnInit() {}
 }

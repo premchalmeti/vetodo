@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+
+import { AuthService } from 'src/app/services/auth.service';
+import { AppConstants } from '../../shared/appConstants';
+
 
 @Component({
   selector: 'app-login',
@@ -12,7 +15,7 @@ export class LoginComponent implements OnInit {
   password: string;
   err_msg: string;
   hide: boolean = true;
-  title: string = 'Vetodo';
+  title: string = AppConstants.TITLE;
 
   constructor(private authService: AuthService, private router: Router) {}
 

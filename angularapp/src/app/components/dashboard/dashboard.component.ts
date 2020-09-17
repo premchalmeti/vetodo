@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MatDialog } from '@angular/material/dialog';
+
 import { Todo } from '../../interfaces/todo';
 import { TodoService } from '../../services/todo.service';
+import { AuthService } from '../../services/auth.service';
 import { TodoDialogComponent } from '../todo-dialog/todo-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +16,11 @@ import { MatDialog } from '@angular/material/dialog';
 export class DashboardComponent implements OnInit {
   todos: Todo[];
 
-  constructor(private todoService: TodoService, public todoDialog: MatDialog) {}
+  constructor(
+    public authService: AuthService,
+    private todoService: TodoService,
+    public todoDialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.todoService.fetchTodos().subscribe((todos) => {
@@ -23,7 +30,7 @@ export class DashboardComponent implements OnInit {
 
   addNewTodo(newTodo: Todo): void {
     this.todoService.createTodo(newTodo).subscribe((response) => {
-      if(response.ok) {
+      if (response.ok) {
         newTodo.id = response.todo_id;
         this.todos.push(newTodo);
       }
@@ -38,13 +45,13 @@ export class DashboardComponent implements OnInit {
     });
 
     todoDialogRef.afterClosed().subscribe((data) => {
-      if(!data) return;
+      if (!data) return;
       console.log(`New Todo Added: ${JSON.stringify(data.todo)}`);
       this.addNewTodo(data.todo);
     });
   }
 
   removeTodo(deletedTodo: Todo): void {
-    this.todos = this.todos.filter(t => t !== deletedTodo);
+    this.todos = this.todos.filter((t) => t !== deletedTodo);
   }
 }

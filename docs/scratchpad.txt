@@ -60,3 +60,21 @@ CSRF Configuration: HttpClientXsrfModule
 Class-based views
 Todo Model
 Todo Django App
+
+
+
+
+
+
+
+
+# django websockets
+
+1. channels:    communication layer, multiple consumers talk with channels
+    - redis_channel
+2. asgi
+3. daphene
+4. routing
+5. consumer workers
+
+

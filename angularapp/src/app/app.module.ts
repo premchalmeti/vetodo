@@ -31,6 +31,8 @@ import { TodoComponent } from './components/todo/todo.component';
 import { TodoDialogComponent } from './components/todo-dialog/todo-dialog.component';
 import { DatetimePickerDialogComponent } from './components/datetime-picker-dialog/datetime-picker-dialog.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatIconModule,
     MatToolbarModule,
     MatBadgeModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   entryComponents: [TodoDialogComponent],
   exports: [

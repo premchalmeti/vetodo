@@ -6,7 +6,7 @@ SECRET_KEY = '0wd1*dbc$c*&w*%mb9-b^c440j%9i3h5i6wp5#_g(0i48^9c6p'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.43.47', 'localhost']
 
 
 INSTALLED_APPS = [
@@ -20,11 +20,22 @@ INSTALLED_APPS = [
     # third party apps
     'rest_framework',
     'django_rq',
+    'channels',
 
     # custom apps
     'accounts_app',
     'vetodo_app'
 ]
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('localhost', 6379)],
+        }
+    }
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -55,6 +66,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'vetodoprj.wsgi.application'
+ASGI_APPLICATION = "vetodoprj.routing.application"
 
 
 DATABASES = {

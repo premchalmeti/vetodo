@@ -1,43 +1,46 @@
 <div class="todo-dialog">
-    <h1 mat-dialog-title>Add Reminder</h1>
-    <div mat-dialog-content>
-      <div>
-        <mat-form-field>
-            <input matInput [ngxMatDatetimePicker]="picker" 
-                            placeholder="Choose a date" 
-                            [formControl]="dateControl"
-                            [min]="minDate" [max]="maxDate" 
-                            [disabled]="disabled">
-            <mat-datepicker-toggle matSuffix [for]="picker">
-            </mat-datepicker-toggle>
-            <ngx-mat-datetime-picker #picker 
-              [showSpinners]="showSpinners" 
-              [showSeconds]="showSeconds"
-              [stepHour]="stepHour" [stepMinute]="stepMinute" 
-              [stepSecond]="stepSecond"
-              [touchUi]="touchUi"
-              [color]="color">
-            </ngx-mat-datetime-picker>
-          </mat-form-field>
-      </div>
-    </div>
-    <div mat-dialog-actions>
-      <button
-        mat-stroked-button
-        color="accent"
-        (click)="cancel()"
-        class="float-right"
+  <h1 mat-dialog-title>Add Reminder</h1>
+  <div mat-dialog-content>
+    <mat-form-field class="my-4 w-100">
+      <input
+        matInput
+        [ngxMatDatetimePicker]="picker"
+        placeholder="Choose a date"
+        [formControl]="dateControl"
+        [min]="minDate"
+        [max]="maxDate"
+        [disabled]="disabled"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker
+        #picker
+        [showSpinners]="showSpinners"
+        [showSeconds]="showSeconds"
+        [stepHour]="stepHour"
+        [stepMinute]="stepMinute"
+        [stepSecond]="stepSecond"
+        [touchUi]="touchUi"
+        [color]="color"
       >
-        Cancel
-      </button>
-      <button
-        mat-raised-button
-        color="primary"
-        [mat-dialog-close]="dateControl.value"
-        class="float-right"
-      >
-        Save
-      </button>
-    </div>
+      </ngx-mat-datetime-picker>
+    </mat-form-field>
   </div>
-  
+  <div mat-dialog-actions class="float-right">
+    <button
+      mat-stroked-button
+      color="accent"
+      (click)="cancel()"
+      class="px-5 mr-1"
+    >
+      Cancel
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      [mat-dialog-close]="dateControl.value"
+      class="px-5"
+    >
+      Save
+    </button>
+  </div>
+</div>
